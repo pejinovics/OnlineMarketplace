@@ -37,8 +37,8 @@ public class AdvertisementController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getAdvertisementDetails(@IdentityConstraint @PathVariable("id") Long id) {
-        AdvertisementDTO accommodationDTO = advertisementService.findById(id);
+    public ResponseEntity<?> getAdvertisementDetails(@IdentityConstraint @PathVariable("id") Long id) throws IOException {
+        AdvertisementDTO accommodationDTO = advertisementService.findAdvertisementDetails(id);
         if(accommodationDTO == null)    return new ResponseEntity<AdvertisementDTO>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<AdvertisementDTO>(accommodationDTO, HttpStatus.OK);
     }

@@ -49,7 +49,7 @@ public class UserController {
         }
         return new ResponseEntity<Optional<User>>(user, HttpStatus.OK);
     }
-    
+
     @DeleteMapping (value = "/delete/{id}")
     public ResponseEntity<?> deleteUser(@IdentityConstraint @PathVariable("id") Long id) {
         userService.deleteById(id);
