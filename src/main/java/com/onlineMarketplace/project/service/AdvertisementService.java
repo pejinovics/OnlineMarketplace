@@ -22,6 +22,8 @@ public class AdvertisementService implements IAdvertisementService {
     private IAdvertisementRepository advertisementRepository;
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private ImageService imageService;
 
     @Override
     public Collection<AdvertisementDTO> findAll() {
@@ -47,10 +49,8 @@ public class AdvertisementService implements IAdvertisementService {
     }
 
     @Override
-    public AdvertisementDTO findById(Long id) {
-        Optional<Advertisement> advertisement = advertisementRepository.findById(id);
-        if(advertisement.isEmpty()) return null;
-        return new AdvertisementDTO(advertisement.get());
+    public Optional<Advertisement> findById(Long id) {
+        return advertisementRepository.findById(id);
     }
 
     @Override
@@ -99,5 +99,36 @@ public class AdvertisementService implements IAdvertisementService {
 
         save(advertisement.get());
         return Optional.of(advertisementDTO);
+    }
+
+    @Override
+    public AdvertisementDTO saveImage(String image, Long advertisementId) {
+        Optional<Advertisement> advertisement = findById(advertisementId);
+
+        if(advertisement.isEmpty()) return null;
+
+        advertisement.get().setImage(image);
+        save(advertisement.get());
+
+        return new AdvertisementDTO(advertisement.get());
+    }
+
+    @Override
+    public String getImage(Long advertisementId) {
+        Optional<Advertisement> advertisement = findById(advertisementId);
+
+        if(advertisement.isEmpty()) return null;
+
+        return advertisement.get().getImage();
+    }
+
+    @Override
+    public AdvertisementDTO findAdvertisementDetails(Long id) throws IOException {
+        Optional<Advertisement> advertisement = findById(id);
+        if (advertisement.isEmpty()) return null;
+
+        AdvertisementDTO advertisementDTO = new AdvertisementDTO(advertisement.get());
+        advertisementDTO.setImage(imageService.getImage(advertisement.get().getImage()));
+        return advertisementDTO;
     }
 }

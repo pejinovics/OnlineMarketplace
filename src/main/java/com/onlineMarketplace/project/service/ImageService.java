@@ -27,13 +27,19 @@ public class ImageService {
         return uniqueFileName;
     }
 
-    public byte[] getImage(String imageDirectory, String imageName) throws IOException {
+    public byte[] getImage(String imageName) throws IOException {
+        String imageDirectory = "src/main/resources/static/images/advertisements";
+
+        return getImageByDirectory(imageDirectory, imageName);
+    }
+
+    public byte[] getImageByDirectory(String imageDirectory, String imageName) throws IOException {
         Path imagePath = Path.of(imageDirectory, imageName);
 
         if (Files.exists(imagePath)) {
             return Files.readAllBytes(imagePath);
         } else {
-            return null;
+            return null; // Rukovanje kada slika ne postoji
         }
     }
 

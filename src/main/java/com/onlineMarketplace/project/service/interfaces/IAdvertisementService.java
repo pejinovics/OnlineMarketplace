@@ -12,10 +12,12 @@ public interface IAdvertisementService {
 
     Collection<AdvertisementDTO> findAll();
     Collection<AdvertisementCardDTO> findAllCards();
-    AdvertisementDTO findById(Long id);
+    Optional<Advertisement> findById(Long id);
     Advertisement save(Advertisement advertisement) ;
     void deleteById(Long id);
     AdvertisementDTO create(AdvertisementDTO advertisementDTO);
     Optional<AdvertisementDTO> change(AdvertisementDTO advertisementDTO, Long id);
-
+    AdvertisementDTO saveImage(String image, Long advertisementId);
+    String getImage(Long advertisementId);
+    AdvertisementDTO findAdvertisementDetails(Long id) throws IOException;
 }
