@@ -24,6 +24,7 @@ public class WebSecurityConfiguration {
                 .requestMatchers("/api/advertisements**").permitAll()
                 .requestMatchers("/api/advertisements/{id}").permitAll()
                 .requestMatchers("/api/advertisements/cards").permitAll()
+                .requestMatchers("/api/advertisements/cards/filter").permitAll()
 //                .requestMatchers("/socket/**").permitAll()
 //                .requestMatchers("/api/accommodation**").authenticated() // sav pristup API-ju mora da bude autentikovan
                 .anyRequest().authenticated()

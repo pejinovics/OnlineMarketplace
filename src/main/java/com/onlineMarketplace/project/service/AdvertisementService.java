@@ -2,6 +2,7 @@ package com.onlineMarketplace.project.service;
 
 import com.onlineMarketplace.project.dto.AdvertisementCardDTO;
 import com.onlineMarketplace.project.dto.AdvertisementDTO;
+import com.onlineMarketplace.project.dto.AdvertisementFilterDTO;
 import com.onlineMarketplace.project.model.Advertisement;
 import com.onlineMarketplace.project.model.User;
 import com.onlineMarketplace.project.repository.IAdvertisementRepository;
@@ -130,5 +131,18 @@ public class AdvertisementService implements IAdvertisementService {
         AdvertisementDTO advertisementDTO = new AdvertisementDTO(advertisement.get());
         advertisementDTO.setImage(imageService.getImage(advertisement.get().getImage()));
         return advertisementDTO;
+    }
+
+    @Override
+    public Collection<AdvertisementCardDTO> filterAdvertisements(AdvertisementFilterDTO advertisementFilterDTO) {
+        Collection<Advertisement> advertisements = advertisementRepository.filterAdvertisements(advertisementFilterDTO.getCategory(),
+                advertisementFilterDTO.getTitleContains(), advertisementFilterDTO.getUserId(), advertisementFilterDTO.getSortBy());
+        Collection<AdvertisementCardDTO> advertisementCardDTOS = new ArrayList<>();
+        for(Advertisement ad: advertisements){
+            AdvertisementCardDTO advertisementCardDTO = new AdvertisementCardDTO(ad);
+            // here to set image
+            advertisementCardDTOS.add(advertisementCardDTO);
+        }
+        return advertisementCardDTOS;
     }
 }

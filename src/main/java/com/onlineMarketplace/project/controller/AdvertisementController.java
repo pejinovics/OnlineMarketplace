@@ -2,10 +2,13 @@ package com.onlineMarketplace.project.controller;
 
 import com.onlineMarketplace.project.dto.AdvertisementCardDTO;
 import com.onlineMarketplace.project.dto.AdvertisementDTO;
+import com.onlineMarketplace.project.dto.AdvertisementFilterDTO;
 import com.onlineMarketplace.project.model.Advertisement;
+import com.onlineMarketplace.project.model.enums.Category;
 import com.onlineMarketplace.project.service.interfaces.IAdvertisementService;
 import com.onlineMarketplace.project.validation.IdentityConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -61,5 +65,17 @@ public class AdvertisementController {
         Optional<AdvertisementDTO> advertisement = advertisementService.change(advertisementDTO,id);
         if (advertisement.get() == null) return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<AdvertisementDTO>(advertisement.get(), HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/cards/filter",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> filterAccommodations(
+            @RequestParam(required = false) Category category,
+            @RequestParam(required = false) String titleContains,
+            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) String sortBy
+    ) {
+        AdvertisementFilterDTO filterDTO = new AdvertisementFilterDTO(category, titleContains, userId, sortBy);
+        Collection<AdvertisementCardDTO> advertisementCardDTOS = advertisementService.filterAdvertisements(filterDTO);
+        return new ResponseEntity<Collection<AdvertisementCardDTO>>(advertisementCardDTOS, HttpStatus.OK);
     }
 }

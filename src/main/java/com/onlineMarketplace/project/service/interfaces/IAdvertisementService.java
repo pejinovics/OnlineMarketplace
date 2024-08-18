@@ -2,6 +2,7 @@ package com.onlineMarketplace.project.service.interfaces;
 
 import com.onlineMarketplace.project.dto.AdvertisementCardDTO;
 import com.onlineMarketplace.project.dto.AdvertisementDTO;
+import com.onlineMarketplace.project.dto.AdvertisementFilterDTO;
 import com.onlineMarketplace.project.model.Advertisement;
 
 import java.io.IOException;
@@ -20,4 +21,5 @@ public interface IAdvertisementService {
     AdvertisementDTO saveImage(String image, Long advertisementId);
     String getImage(Long advertisementId);
     AdvertisementDTO findAdvertisementDetails(Long id) throws IOException;
+    Collection<AdvertisementCardDTO> filterAdvertisements(AdvertisementFilterDTO advertisementFilterDTO);
 }
