@@ -34,8 +34,8 @@ public class UserService implements IUserService {
         user.setPassword(passwordEncoded);
         user.setId(userDTO.getId());
         user.setUsername(userDTO.getUsername());
-        user.setPhoneNumber(user.getPhoneNumber());
-        user.setRegistrationDate(user.getRegistrationDate());
+        user.setPhoneNumber(userDTO.getPhoneNumber());
+        user.setRegistrationDate(userDTO.getRegistrationDate());
         userRepository.save(user);
         return user;
     }

@@ -24,7 +24,7 @@ public class ImageController {
     @Autowired
     private AdvertisementService advertisementService;
     @PostMapping("/{advertisementId}")
-    public ResponseEntity<?> createAccommodationImage(@RequestParam("image") MultipartFile imageFile,
+    public ResponseEntity<?> addAccommodationImage(@RequestParam("image") MultipartFile imageFile,
                                                       @IdentityConstraint @PathVariable Long advertisementId) throws Exception {
         String uploadDirectory = "src/main/resources/static/images/advertisements";
         String imageName = imageService.saveImageToStorage(uploadDirectory, imageFile);
