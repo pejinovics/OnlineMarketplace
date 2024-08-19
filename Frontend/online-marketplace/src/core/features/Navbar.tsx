@@ -11,7 +11,7 @@ const MyNavbar: React.FC = () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                    <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
+                    <Nav.Link as={Link} to="/register">Sign Up</Nav.Link>
                     {/* Uncomment and modify the following buttons later */}
                     {/* <Nav.Link as={Link} to="/new-ad">Add Advertisement</Nav.Link>
                     <Button variant="outline-light" onClick={() => {/* sign out logic */ /*}}>Sign Out</Button> */}
