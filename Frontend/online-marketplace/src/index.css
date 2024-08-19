@@ -7,6 +7,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* index.css */
+html, body {
+  height: 100% !important; /* Ensure full height */
+  margin: 0 !important; /* Remove default margin */
+  padding: 0 !important; /* Remove default padding */
+  background-color: #F6F8FA !important; /* Light gray background color */
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

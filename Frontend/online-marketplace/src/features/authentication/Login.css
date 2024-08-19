@@ -1,0 +1,43 @@
+/* Login.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.login-form {
+    background-color: #ffffff; /* White background for the form */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for better appearance */
+    max-width: 400px; /* Maximum width of the form */
+    width: 100%; /* Full width within max-width constraint */
+    margin: auto; /* Center horizontally */
+}
+
+.login-form h2 {
+    color: #235471; /* Title color matching the navbar background */
+    text-align: center; /* Center the title */
+}
+
+.login-form .form-group {
+    margin-bottom: 1rem; /* Add space between form groups */
+}
+
+.login-form .form-control {
+    border-color: #235471; /* Border color matching the navbar background */
+}
+
+.login-form .btn-primary {
+    background-color: #235471; /* Button background color matching the navbar background */
+    border-color: #235471; /* Button border color */
+    width: 100%; /* Make the button full width */
+}
+
+.login-form .btn-primary:hover {
+    background-color: #1d4f74; /* Darker shade for hover effect */
+    border-color: #1d4f74; /* Darker shade for hover effect */
+}
