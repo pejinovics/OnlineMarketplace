@@ -1,0 +1,27 @@
+.navbar {
+    background-color: #235471 !important;
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5rem !important;
+    margin-left: 1.5rem;
+}
+
+.navbar .nav-link {
+    color: white !important;
+    font-size: 1rem !important;
+}
+
+.navbar .nav-link:hover {
+    color: #d3d3d3 !important;
+}
+
+.navbar .btn-outline-light {
+    border-color: white !important;
+    color: white !important;
+}
+
+.navbar .btn-outline-light:hover {
+    background-color: white !important;
+    color: #235471 !important;
+}
