@@ -1,4 +1,4 @@
-package com.onlineMarketplace.project.config;
+package com.onlineMarketplace.project.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
