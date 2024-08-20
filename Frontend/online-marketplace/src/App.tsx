@@ -1,20 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Navbar from "./core/features/Navbar";
-import {BrowserRouter as Router, Route, Routes, useLocation} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import MyNavbar from "./core/features/Navbar";
 import Login from "./features/authentication/Login";
 import Register from "./features/authentication/Register";
-
-// function App() {
-//   return (
-//       <>
-//           <Router>
-//               <Navbar></Navbar>
-//           </Router>
-//       </>
-//   );
-// }
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -22,13 +10,15 @@ const App: React.FC = () => {
 
     return (
         <>
-            {!hideNavbar && <Navbar />}
+            {!hideNavbar && <MyNavbar />}
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                {/* Dodaj druge rute ovde */}
+                <Route path="/" element={<div>Home Page</div>} />
+                {/* Add other routes here */}
             </Routes>
         </>
     );
 };
+
 export default App;

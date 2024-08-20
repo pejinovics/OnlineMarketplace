@@ -12,4 +12,5 @@ public interface IUserService {
     User registerUser(UserDTO userDTO);
     User save(User user);
     void deleteById(Long id);
+    Optional<User> findByUsername(String username);
 }

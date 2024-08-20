@@ -1,5 +1,6 @@
 package com.onlineMarketplace.project.model;
 
+import com.onlineMarketplace.project.dto.UserCredentialsDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,4 +32,13 @@ public class User {
 
     @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate registrationDate;
+
+    @Transient
+    private String jwt;
+
+    public User(UserCredentialsDTO userCredentialsDTO){
+//        this.id = userCredentialsDTO.getId();
+        this.username = userCredentialsDTO.getUsername();
+        this.password = userCredentialsDTO.getPassword();
+    }
 }
