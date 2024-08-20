@@ -1,11 +1,13 @@
 package com.onlineMarketplace.project.config.security.jwt;
 
 import com.onlineMarketplace.project.service.interfaces.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,19 +16,19 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-//@Component
+@Component
 public class JwtTokenUtil implements Serializable {
     private static final long serialVersionUID = -2550185165626007488L;
     public static final long JWT_TOKEN_VALIDITY = 500 * 60 * 60;
     @Value("${jwt.secret}")
     private String secret;
-    //    @Autowired
+    @Autowired
     private IUserService userService;
 
     // retrieve username from jwt token
-    public String getUsernameFromToken(String token) {
-        return getClaimFromToken(token, Claims::getSubject);
-    }
+//    public String getUsernameFromToken(String token) {
+//        return getClaimFromToken(token, Claims::getSubject);
+//    }
 
     // retrieve expiration date from jwt token
     public Date getExpirationDateFromToken(String token) {
@@ -44,16 +46,16 @@ public class JwtTokenUtil implements Serializable {
     }
 
     // check if the token has expired
-    private Boolean isTokenExpired(String token) {
-        final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(new Date());
-    }
+//    private Boolean isTokenExpired(String token) {
+//        final Date expiration = getExpirationDateFromToken(token);
+//        return expiration.before(new Date());
+//    }
 
     // generate token for user
-    public String generateToken(String username, UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, username, userDetails);
-    }
+//    public String generateToken(String username, UserDetails userDetails) {
+//        Map<String, Object> claims = new HashMap<>();
+//        return doGenerateToken(claims, username, userDetails);
+//    }
 
     // while creating the token -
     // 1. Define claims of the token, like Issuer, Expiration, Subject, and the ID
@@ -68,6 +70,34 @@ public class JwtTokenUtil implements Serializable {
     }
 
     // validate token
+//    public Boolean validateToken(String token, UserDetails userDetails) {
+//        final String username = getUsernameFromToken(token);
+//        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token) && userDetails.isEnabled());
+//    }
+    public String generateToken(String username, UserDetails userDetails) {
+        return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 sati
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
+    }
+
+    public String getUsernameFromToken(String token) {
+        return getClaimsFromToken(token).getSubject();
+    }
+
+    private Claims getClaimsFromToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public Boolean isTokenExpired(String token) {
+        return getClaimsFromToken(token).getExpiration().before(new Date());
+    }
+
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token) && userDetails.isEnabled());
