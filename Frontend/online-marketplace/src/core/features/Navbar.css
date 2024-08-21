@@ -1,7 +1,13 @@
 .navbar {
     background-color: #235471 !important;
 }
-
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ako je potrebno da bude iznad ostalih elemenata */
+    height: 70px;  /* Prilagodi visinu prema potrebi */
+}
 .navbar .navbar-brand {
     font-size: 1.5rem !important;
     margin-left: 1.5rem;
@@ -25,3 +31,5 @@
     background-color: white !important;
     color: #235471 !important;
 }
+
+

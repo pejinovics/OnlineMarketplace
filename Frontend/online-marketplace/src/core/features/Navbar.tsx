@@ -3,10 +3,12 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import axiosInstance from "../../axiosConfig";
+import { useUser } from './UserContext';
 
 const MyNavbar: React.FC = () => {
-    const username = localStorage.getItem('username');
+    // const username = localStorage.getItem('username');
     const navigate = useNavigate();
+    const { isLoggedIn, username, setIsLoggedIn, setUsername, setUserId } = useUser();
 
     const handleLogout = async () => {
         try {
@@ -19,7 +21,11 @@ const MyNavbar: React.FC = () => {
             // Očistite podatke o prijavi
             localStorage.removeItem('token');
             localStorage.removeItem('username');
+            localStorage.removeItem('userId');
 
+            setIsLoggedIn(false);
+            setUsername('');
+            setUserId(null);
             // Preusmerite na stranicu za prijavu
             navigate('/login');
         } catch (err) {
@@ -35,16 +41,15 @@ const MyNavbar: React.FC = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    {!username ? (
+                    {isLoggedIn ? (
                         <>
-                            <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                            <Nav.Link as={Link} to="/register">Sign Up</Nav.Link>
+                            <span className="navbar-text ml-3">{username}</span>
+                            <Nav.Link as={Link} to="/home" onClick={handleLogout}>Sign Out</Nav.Link>
                         </>
                     ) : (
                         <>
-                            <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                            <Button variant="outline-light" onClick={handleLogout}>Logout</Button>
-                            <span className="navbar-text ml-3">Welcome, {username}</span>
+                            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                            <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
                         </>
                     )}
                 </Nav>

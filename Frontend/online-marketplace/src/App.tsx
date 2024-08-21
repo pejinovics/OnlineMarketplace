@@ -3,20 +3,26 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import MyNavbar from "./core/features/Navbar";
 import Login from "./features/authentication/Login";
 import Register from "./features/authentication/Register";
+import Home from "./features/advertisements/home/Home";
+import { useUser } from "./core/features/UserContext";
 
 const App: React.FC = () => {
     const location = useLocation();
+    const { isLoggedIn } = useUser();
     const hideNavbar = location.pathname === '/login' || location.pathname === '/register';
 
     return (
         <>
             {!hideNavbar && <MyNavbar />}
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/" element={<div>Home Page</div>} />
-                {/* Add other routes here */}
-            </Routes>
+            <div style={{ paddingTop: '70px' }}> {/* Dodaj padding-top ovde */}
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/" element={<Home />} /> {/* Koristi Home komponentu */}
+                    <Route path="/add-advertisement" element={<div>Add Page</div>} />
+                    {/* Add other routes here */}
+                </Routes>
+            </div>
         </>
     );
 };

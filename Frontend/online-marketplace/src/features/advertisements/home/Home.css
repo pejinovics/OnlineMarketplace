@@ -1,0 +1,9 @@
+.home-container {
+    width: 85%;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.title {
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
