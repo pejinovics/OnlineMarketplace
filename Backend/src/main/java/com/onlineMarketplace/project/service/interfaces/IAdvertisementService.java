@@ -3,6 +3,7 @@ package com.onlineMarketplace.project.service.interfaces;
 import com.onlineMarketplace.project.dto.AdvertisementCardDTO;
 import com.onlineMarketplace.project.dto.AdvertisementDTO;
 import com.onlineMarketplace.project.dto.AdvertisementFilterDTO;
+import com.onlineMarketplace.project.dto.CreateAdvertisementDTO;
 import com.onlineMarketplace.project.model.Advertisement;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public interface IAdvertisementService {
     Optional<Advertisement> findById(Long id);
     Advertisement save(Advertisement advertisement) ;
     void deleteById(Long id);
-    AdvertisementDTO create(AdvertisementDTO advertisementDTO);
+    AdvertisementDTO create(CreateAdvertisementDTO createAdvertisementDTO);
     Optional<AdvertisementDTO> change(AdvertisementDTO advertisementDTO, Long id);
     AdvertisementDTO saveImage(String image, Long advertisementId);
     String getImage(Long advertisementId);

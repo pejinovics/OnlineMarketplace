@@ -3,6 +3,7 @@ package com.onlineMarketplace.project.service;
 import com.onlineMarketplace.project.dto.AdvertisementCardDTO;
 import com.onlineMarketplace.project.dto.AdvertisementDTO;
 import com.onlineMarketplace.project.dto.AdvertisementFilterDTO;
+import com.onlineMarketplace.project.dto.CreateAdvertisementDTO;
 import com.onlineMarketplace.project.model.Advertisement;
 import com.onlineMarketplace.project.model.User;
 import com.onlineMarketplace.project.repository.IAdvertisementRepository;
@@ -65,7 +66,7 @@ public class AdvertisementService implements IAdvertisementService {
     }
 
     @Override
-    public AdvertisementDTO create(AdvertisementDTO advertisementDTO) {
+    public AdvertisementDTO create(CreateAdvertisementDTO advertisementDTO) {
         Advertisement advertisement = new Advertisement();
         advertisement.setTitle(advertisementDTO.getTitle());
         advertisement.setDescription(advertisementDTO.getDescription());
@@ -74,7 +75,7 @@ public class AdvertisementService implements IAdvertisementService {
         advertisement.setCity(advertisementDTO.getCity());
         advertisement.setPostedDate(advertisementDTO.getPostedDate());
 
-        Optional<User> user = userRepository.findById(advertisementDTO.getUser().getId());
+        Optional<User> user = userRepository.findById(advertisementDTO.getUserId());
         if(user.isEmpty()) return null;
         advertisement.setUser(user.get());
 

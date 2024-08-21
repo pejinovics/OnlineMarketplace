@@ -3,6 +3,7 @@ package com.onlineMarketplace.project.controller;
 import com.onlineMarketplace.project.dto.AdvertisementCardDTO;
 import com.onlineMarketplace.project.dto.AdvertisementDTO;
 import com.onlineMarketplace.project.dto.AdvertisementFilterDTO;
+import com.onlineMarketplace.project.dto.CreateAdvertisementDTO;
 import com.onlineMarketplace.project.model.Advertisement;
 import com.onlineMarketplace.project.model.enums.Category;
 import com.onlineMarketplace.project.service.interfaces.IAdvertisementService;
@@ -48,7 +49,7 @@ public class AdvertisementController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createAdvertisement(@RequestBody AdvertisementDTO advertisementDTO) {
+    public ResponseEntity<?> createAdvertisement(@RequestBody CreateAdvertisementDTO advertisementDTO) {
         AdvertisementDTO newAdvertisementDTO = advertisementService.create(advertisementDTO);
         return new ResponseEntity<AdvertisementDTO>(newAdvertisementDTO, HttpStatus.CREATED);
     }
