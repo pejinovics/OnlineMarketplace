@@ -20,6 +20,7 @@ public class AdvertisementCardDTO {
     private double price;
     private List<Category> categories;
     private String city;
+    private Long userId;
 
     public AdvertisementCardDTO(Advertisement advertisement){
         this.id = advertisement.getId();
@@ -27,5 +28,6 @@ public class AdvertisementCardDTO {
         this.price = advertisement.getPrice();
         this.categories = advertisement.getCategories();
         this.city = advertisement.getCity();
+        this.userId = advertisement.getUser().getId();
     }
 }

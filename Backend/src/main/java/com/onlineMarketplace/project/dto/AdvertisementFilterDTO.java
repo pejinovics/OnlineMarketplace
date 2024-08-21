@@ -14,5 +14,5 @@ public class AdvertisementFilterDTO {
     private Category category;
     private String titleContains;
     private Long userId;
-    private String sortBy;
+    private Integer maxValue;
 }

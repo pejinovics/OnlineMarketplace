@@ -14,12 +14,12 @@ public interface IAdvertisementRepository extends JpaRepository<Advertisement, L
             "WHERE (:category IS NULL OR c = :category) " +
             "AND (:titleContains IS NULL OR LOWER(a.title) LIKE LOWER(CONCAT('%', :titleContains, '%'))) " +
             "AND (:userId = 0 OR a.user.id = :userId) " +
-            "ORDER BY " +
-            "CASE WHEN :sortBy = 'asc' THEN a.price END ASC, " +
-            "CASE WHEN :sortBy = 'desc' THEN a.price END DESC"
+            "AND (:maxValue IS NULL OR a.price < :maxValue) " +
+            "ORDER BY a.postedDate DESC"
     )
     Collection<Advertisement> filterAdvertisements(@Param("category") Category category,
                                                    @Param("titleContains") String titleContains,
                                                    @Param("userId") Long userId,
-                                                   @Param("sortBy") String sortBy);
+                                                   @Param("maxValue") Integer maxValue);
+
 }

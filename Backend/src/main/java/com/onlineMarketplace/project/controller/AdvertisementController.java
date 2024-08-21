@@ -72,9 +72,9 @@ public class AdvertisementController {
             @RequestParam(required = false) Category category,
             @RequestParam(required = false) String titleContains,
             @RequestParam(required = false) Long userId,
-            @RequestParam(required = false) String sortBy
-    ) {
-        AdvertisementFilterDTO filterDTO = new AdvertisementFilterDTO(category, titleContains, userId, sortBy);
+            @RequestParam(required = false) Integer maxValue
+    ) throws IOException {
+        AdvertisementFilterDTO filterDTO = new AdvertisementFilterDTO(category, titleContains, userId, maxValue);
         Collection<AdvertisementCardDTO> advertisementCardDTOS = advertisementService.filterAdvertisements(filterDTO);
         return new ResponseEntity<Collection<AdvertisementCardDTO>>(advertisementCardDTOS, HttpStatus.OK);
     }

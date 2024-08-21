@@ -3,6 +3,7 @@ package com.onlineMarketplace.project.controller;
 import com.onlineMarketplace.project.config.security.jwt.JwtTokenUtil;
 import com.onlineMarketplace.project.dto.UserCredentialsDTO;
 import com.onlineMarketplace.project.model.User;
+import com.onlineMarketplace.project.service.interfaces.IUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,9 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private IUserService userService;
+
     @PostMapping(value = "/login")
     public ResponseEntity<User> login(@Valid @RequestBody UserCredentialsDTO userCredentialsDTO) {
         try {
@@ -52,6 +56,7 @@ public class AuthenticationController {
             String token = jwtTokenUtil.generateToken(userCredentialsDTO.getUsername(), userDetailsService.loadUserByUsername(userCredentialsDTO.getUsername()));
             User user = new User(userCredentialsDTO);
             user.setJwt(token);
+            user.setId(userService.findByUsername(userCredentialsDTO.getUsername()).get().getId());
 
             return ResponseEntity.ok(user);
         } catch (AuthenticationException e) {

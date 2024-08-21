@@ -134,13 +134,14 @@ public class AdvertisementService implements IAdvertisementService {
     }
 
     @Override
-    public Collection<AdvertisementCardDTO> filterAdvertisements(AdvertisementFilterDTO advertisementFilterDTO) {
+    public Collection<AdvertisementCardDTO> filterAdvertisements(AdvertisementFilterDTO advertisementFilterDTO) throws IOException {
         Collection<Advertisement> advertisements = advertisementRepository.filterAdvertisements(advertisementFilterDTO.getCategory(),
-                advertisementFilterDTO.getTitleContains(), advertisementFilterDTO.getUserId(), advertisementFilterDTO.getSortBy());
+                advertisementFilterDTO.getTitleContains(), advertisementFilterDTO.getUserId(), advertisementFilterDTO.getMaxValue());
         Collection<AdvertisementCardDTO> advertisementCardDTOS = new ArrayList<>();
         for(Advertisement ad: advertisements){
             AdvertisementCardDTO advertisementCardDTO = new AdvertisementCardDTO(ad);
             // here to set image
+            if (ad.getImage() != null){    advertisementCardDTO.setImage(imageService.getImage(ad.getImage()));}
             advertisementCardDTOS.add(advertisementCardDTO);
         }
         return advertisementCardDTOS;

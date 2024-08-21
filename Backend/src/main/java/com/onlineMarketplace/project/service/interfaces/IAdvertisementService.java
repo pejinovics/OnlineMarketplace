@@ -21,5 +21,5 @@ public interface IAdvertisementService {
     AdvertisementDTO saveImage(String image, Long advertisementId);
     String getImage(Long advertisementId);
     AdvertisementDTO findAdvertisementDetails(Long id) throws IOException;
-    Collection<AdvertisementCardDTO> filterAdvertisements(AdvertisementFilterDTO advertisementFilterDTO);
+    Collection<AdvertisementCardDTO> filterAdvertisements(AdvertisementFilterDTO advertisementFilterDTO) throws IOException;
 }
