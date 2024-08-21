@@ -1,0 +1,68 @@
+/* AddAdvertisement.css */
+
+.container {
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #235471 !important;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.categories-stack {
+    margin-bottom: 20px;
+}
+
+.badge {
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.unselected-category {
+    background-color: #6c757d; /* Siva boja za neizabrane bedževe */
+    color: #ffffff;
+}
+
+.bg {
+    background-color: #235471 !important; /* Plava boja za izabrane bedževe */
+    color: #ffffff;
+}
+
+.unselected-category:hover,
+.selected-category:hover {
+    background-color: #1e4761 !important; /* Tamnija plava boja na hover kada je selektovan */
+}
+
+.btn-primary {
+    background-color: #235471 !important;
+    border-color: #235471 !important;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 120px; /* Fiksna širina dugmeta */
+    display: block; /* Da bi se dugme ponašalo kao blok element */
+    margin-left: auto; /* Pomera dugme desno */
+    margin-right: 0;
+    text-align: center; /* Tekst u dugmetu centriran */
+}
+
+.btn-primary:hover {
+    background-color: #1e4761 !important;
+    border-color: #1e4761 !important;
+}
+
+.formClass {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Postavljanje razmaka između elemenata forme */
+}

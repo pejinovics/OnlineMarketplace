@@ -37,7 +37,6 @@ const AdvertisementTable: React.FC = () => {
     const [filters, setFilters] = useState({
         category: '',
         titleContains: '',
-        minPrice: '',
         maxPrice: '',
         showMineOnly: false,
     });

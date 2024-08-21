@@ -5,6 +5,7 @@ import Login from "./features/authentication/Login";
 import Register from "./features/authentication/Register";
 import Home from "./features/advertisements/home/Home";
 import { useUser } from "./core/features/UserContext";
+import AddAdvertisement from "./features/advertisements/addAdvertisement/AddAdvertisement";
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -19,7 +20,7 @@ const App: React.FC = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/" element={<Home />} /> {/* Koristi Home komponentu */}
-                    <Route path="/add-advertisement" element={<div>Add Page</div>} />
+                    <Route path="/add-advertisement" element={<AddAdvertisement />} />
                     {/* Add other routes here */}
                 </Routes>
             </div>

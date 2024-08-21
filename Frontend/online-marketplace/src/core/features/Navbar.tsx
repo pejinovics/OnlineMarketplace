@@ -44,6 +44,7 @@ const MyNavbar: React.FC = () => {
                     {isLoggedIn ? (
                         <>
                             <span className="navbar-text ml-3">{username}</span>
+                            <Nav.Link as={Link} to="/add-advertisement" >Add advertisement</Nav.Link>
                             <Nav.Link as={Link} to="/home" onClick={handleLogout}>Sign Out</Nav.Link>
                         </>
                     ) : (
