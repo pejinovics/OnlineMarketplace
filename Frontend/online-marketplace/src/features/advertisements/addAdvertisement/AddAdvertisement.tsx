@@ -5,7 +5,6 @@ import { useDropzone } from 'react-dropzone';
 import axiosInstance from "../../../axiosConfig";
 import "./AddAdvertisement.css";
 
-// Define the type for category options
 type CategoryOption = 'CLOTHING' | 'TOOLS' | 'SPORTS' | 'ACCESSORIES' | 'FURNITURE' | 'PETS' | 'GAMES' | 'BOOKS' | 'TECHNOLOGY';
 
 const categoriesOptions: CategoryOption[] = [
@@ -41,7 +40,7 @@ const AddAdvertisement: React.FC = () => {
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
-            'image/*': []  // Specify that only image files are accepted
+            'image/*': []
         },
         onDrop: (acceptedFiles) => {
             setImage(acceptedFiles[0]);
@@ -96,7 +95,6 @@ const AddAdvertisement: React.FC = () => {
                 console.log('Image uploaded successfully');
             }
 
-            // Redirect to /home on success
             navigate('/');
         } catch (error) {
             console.error('Error creating advertisement or uploading image:', error);
@@ -200,8 +198,8 @@ const AddAdvertisement: React.FC = () => {
                                         src={preview}
                                         alt="Preview"
                                         style={{
-                                            width: '150px',     // Adjust width as needed
-                                            height: 'auto',     // Maintain aspect ratio
+                                            width: '150px',
+                                            height: 'auto',
                                             marginTop: '10px'
                                         }}
                                     />

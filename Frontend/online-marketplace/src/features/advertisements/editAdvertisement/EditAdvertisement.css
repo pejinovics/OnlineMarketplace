@@ -1,4 +1,3 @@
-/* EditAdvertisement.css */
 
 .container {
     padding: 20px;
@@ -28,18 +27,18 @@ h2 {
 }
 
 .unselected-category {
-    background-color: #6c757d; /* Gray color for unselected badges */
+    background-color: #6c757d;
     color: #ffffff;
 }
 
 .bg {
-    background-color: #235471 !important; /* Blue color for selected badges */
+    background-color: #235471 !important;
     color: #ffffff;
 }
 
 .unselected-category:hover,
 .selected-category:hover {
-    background-color: #1e4761 !important; /* Darker blue on hover when selected */
+    background-color: #1e4761 !important;
 }
 
 .btn-primary {
@@ -48,11 +47,11 @@ h2 {
     padding: 10px 20px;
     font-size: 18px;
     margin-top: 20px;
-    width: 120px; /* Fixed width for button */
-    display: block; /* Makes the button behave like a block element */
-    margin-left: auto; /* Aligns the button to the right */
+    width: 120px;
+    display: block;
+    margin-left: auto;
     margin-right: 0;
-    text-align: center; /* Center text inside the button */
+    text-align: center;
 }
 
 .btn-primary:hover {
@@ -64,19 +63,17 @@ h2 {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Sets space between form elements */
+    gap: 20px;
 }
 
-/* Styles for image preview */
 img {
     width: 150px;
     height: auto;
     margin-top: 10px;
-    border: 1px solid #ddd; /* Optional border for image preview */
-    border-radius: 4px; /* Optional rounded corners for image preview */
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-/* Styles for file input */
 input[type="file"] {
     margin-top: 10px;
 }

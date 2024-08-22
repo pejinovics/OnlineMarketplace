@@ -17,7 +17,6 @@ const Login: React.FC = () => {
         try {
             const response = await axiosInstance.post('/api/auth/login', { username, password });
 
-            // Sačuvajte JWT token
             localStorage.setItem('token', response.data.jwt);
             localStorage.setItem('username', username);
             localStorage.setItem('userId', response.data.id);
@@ -26,7 +25,6 @@ const Login: React.FC = () => {
             setUserContextUsername(username);
             setUserId(response.data.userId);
 
-            // Preusmerite na početnu stranicu
             navigate('/');
         } catch (err: any) {
             if (err.response && err.response.status === 401) {

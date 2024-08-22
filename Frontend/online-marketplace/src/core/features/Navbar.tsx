@@ -17,7 +17,6 @@ const MyNavbar: React.FC = () => {
                 }
             });
 
-            // Clear login data
             localStorage.removeItem('token');
             localStorage.removeItem('username');
             localStorage.removeItem('userId');
@@ -26,7 +25,6 @@ const MyNavbar: React.FC = () => {
             setUsername('');
             setUserId(null);
 
-            // Redirect to login page
             navigate('/login');
         } catch (err) {
             console.error('Logout failed', err);

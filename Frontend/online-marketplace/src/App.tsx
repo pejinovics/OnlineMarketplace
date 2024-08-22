@@ -8,7 +8,7 @@ import { useUser } from "./core/features/UserContext";
 import AddAdvertisement from "./features/advertisements/addAdvertisement/AddAdvertisement";
 import EditAdvertisement from "./features/advertisements/editAdvertisement/EditAdvertisement";
 import AdvertisementDetails from "./features/advertisements/advertisementDetails/AdvertisementDetails";
-import ProtectedRoute from './ProtectedRoute'; // Importuj ProtectedRoute
+import ProtectedRoute from './ProtectedRoute';
 
 const App: React.FC = () => {
     const location = useLocation();
@@ -18,13 +18,12 @@ const App: React.FC = () => {
     return (
         <>
             {!hideNavbar && <MyNavbar />}
-            <div style={{ paddingTop: '70px' }}> {/* Dodaj padding-top ovde */}
+            <div style={{ paddingTop: '70px' }}>
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/" element={<Home />} />
 
-                    {/* Zaštićene rute */}
                     <Route element={<ProtectedRoute />}>
                         <Route path="/add-advertisement" element={<AddAdvertisement />} />
                         <Route path="/edit-advertisement/:id" element={<EditAdvertisement />} />

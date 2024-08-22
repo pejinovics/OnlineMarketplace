@@ -1,4 +1,4 @@
-// src/features/home/Home.tsx
+
 import React from 'react';
 import AdvertisementTable from "./AdvertisementTable";
 import "./Home.css"
