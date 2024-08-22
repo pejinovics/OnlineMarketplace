@@ -61,7 +61,7 @@ const AddAdvertisement: React.FC = () => {
             setError('Image must be uploaded.');
             return;
         }
-        
+
         setError(null);
 
         // Create advertisement data

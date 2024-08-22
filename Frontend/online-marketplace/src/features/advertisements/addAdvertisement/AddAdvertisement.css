@@ -2,11 +2,12 @@
 
 .container {
     padding: 20px;
+    margin-top: 30px;
 }
 
 h2 {
     margin-bottom: 20px;
-    color: #235471 !important;
+    /*color: #235471 !important;*/
 }
 
 .form-group {

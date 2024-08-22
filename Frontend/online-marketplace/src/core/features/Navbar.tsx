@@ -1,12 +1,11 @@
 import React from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import axiosInstance from "../../axiosConfig";
 import { useUser } from './UserContext';
 
 const MyNavbar: React.FC = () => {
-    // const username = localStorage.getItem('username');
     const navigate = useNavigate();
     const { isLoggedIn, username, setIsLoggedIn, setUsername, setUserId } = useUser();
 
@@ -18,7 +17,7 @@ const MyNavbar: React.FC = () => {
                 }
             });
 
-            // Očistite podatke o prijavi
+            // Clear login data
             localStorage.removeItem('token');
             localStorage.removeItem('username');
             localStorage.removeItem('userId');
@@ -26,31 +25,32 @@ const MyNavbar: React.FC = () => {
             setIsLoggedIn(false);
             setUsername('');
             setUserId(null);
-            // Preusmerite na stranicu za prijavu
+
+            // Redirect to login page
             navigate('/login');
         } catch (err) {
             console.error('Logout failed', err);
-            // Opcionalno obradite greške tokom odjave
         }
     };
 
-
     return (
         <Navbar variant="dark" expand="lg" fixed="top">
-            <Navbar.Brand as={Link} to="/">OnlineMarketplace</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">
+                OnlineMarketplace
+                {isLoggedIn && <span className="navbar-text">Hello, {username}</span>}
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     {isLoggedIn ? (
                         <>
-                            <span className="navbar-text ml-3">{username}</span>
-                            <Nav.Link as={Link} to="/add-advertisement" >Add advertisement</Nav.Link>
+                            <Nav.Link as={Link} to="/add-advertisement">Add advertisement</Nav.Link>
                             <Nav.Link as={Link} to="/home" onClick={handleLogout}>Sign Out</Nav.Link>
                         </>
                     ) : (
                         <>
                             <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                            <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>
+                            <Nav.Link as={Link} to="/register">Sign Up</Nav.Link>
                         </>
                     )}
                 </Nav>
