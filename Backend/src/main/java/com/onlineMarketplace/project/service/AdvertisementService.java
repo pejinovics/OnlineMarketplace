@@ -130,7 +130,9 @@ public class AdvertisementService implements IAdvertisementService {
         if (advertisement.isEmpty()) return null;
 
         AdvertisementDTO advertisementDTO = new AdvertisementDTO(advertisement.get());
-        advertisementDTO.setImage(imageService.getImage(advertisement.get().getImage()));
+        if (advertisement.get().getImage() != null) {
+            advertisementDTO.setImage(imageService.getImage(advertisement.get().getImage()));
+        }
         return advertisementDTO;
     }
 
