@@ -2,9 +2,9 @@
 .register-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    align-items: flex-start; /* Aligns the container to the top */
+    height: calc(100vh - 100px); /* Adjusts height to account for the 100px offset */
+    margin-top: 100px; /* Adds a 100px margin from the top */
     padding: 0;
     background-color: #f8f9fa;
 }

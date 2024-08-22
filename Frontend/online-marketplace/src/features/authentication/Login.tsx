@@ -3,12 +3,14 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import axiosInstance from "../../axiosConfig";
+import {useUser} from "../../core/features/UserContext";
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { setIsLoggedIn, setUsername: setUserContextUsername, setUserId } = useUser();
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,6 +20,11 @@ const Login: React.FC = () => {
             // Sačuvajte JWT token
             localStorage.setItem('token', response.data.jwt);
             localStorage.setItem('username', username);
+            localStorage.setItem('userId', response.data.id);
+
+            setIsLoggedIn(true);
+            setUserContextUsername(username);
+            setUserId(response.data.userId);
 
             // Preusmerite na početnu stranicu
             navigate('/');

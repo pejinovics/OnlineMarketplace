@@ -1,10 +1,24 @@
 .navbar {
     background-color: #235471 !important;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 70px;
 }
 
-.navbar .navbar-brand {
+.navbar-brand {
     font-size: 1.5rem !important;
     margin-left: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .navbar-text {
+    color: white !important;
+    margin-left: 30px;
+    font-size: 1.2rem !important;
+    margin-top: 5px;
 }
 
 .navbar .nav-link {
@@ -14,6 +28,11 @@
 
 .navbar .nav-link:hover {
     color: #d3d3d3 !important;
+}
+
+.ml-auto {
+    margin-left: auto !important;
+    margin-right: 1.5rem;
 }
 
 .navbar .btn-outline-light {

@@ -3,6 +3,7 @@ package com.onlineMarketplace.project.service;
 import com.onlineMarketplace.project.dto.AdvertisementCardDTO;
 import com.onlineMarketplace.project.dto.AdvertisementDTO;
 import com.onlineMarketplace.project.dto.AdvertisementFilterDTO;
+import com.onlineMarketplace.project.dto.CreateAdvertisementDTO;
 import com.onlineMarketplace.project.model.Advertisement;
 import com.onlineMarketplace.project.model.User;
 import com.onlineMarketplace.project.repository.IAdvertisementRepository;
@@ -65,7 +66,7 @@ public class AdvertisementService implements IAdvertisementService {
     }
 
     @Override
-    public AdvertisementDTO create(AdvertisementDTO advertisementDTO) {
+    public AdvertisementDTO create(CreateAdvertisementDTO advertisementDTO) {
         Advertisement advertisement = new Advertisement();
         advertisement.setTitle(advertisementDTO.getTitle());
         advertisement.setDescription(advertisementDTO.getDescription());
@@ -74,7 +75,7 @@ public class AdvertisementService implements IAdvertisementService {
         advertisement.setCity(advertisementDTO.getCity());
         advertisement.setPostedDate(advertisementDTO.getPostedDate());
 
-        Optional<User> user = userRepository.findById(advertisementDTO.getUser().getId());
+        Optional<User> user = userRepository.findById(advertisementDTO.getUserId());
         if(user.isEmpty()) return null;
         advertisement.setUser(user.get());
 
@@ -129,18 +130,21 @@ public class AdvertisementService implements IAdvertisementService {
         if (advertisement.isEmpty()) return null;
 
         AdvertisementDTO advertisementDTO = new AdvertisementDTO(advertisement.get());
-        advertisementDTO.setImage(imageService.getImage(advertisement.get().getImage()));
+        if (advertisement.get().getImage() != null) {
+            advertisementDTO.setImage(imageService.getImage(advertisement.get().getImage()));
+        }
         return advertisementDTO;
     }
 
     @Override
-    public Collection<AdvertisementCardDTO> filterAdvertisements(AdvertisementFilterDTO advertisementFilterDTO) {
+    public Collection<AdvertisementCardDTO> filterAdvertisements(AdvertisementFilterDTO advertisementFilterDTO) throws IOException {
         Collection<Advertisement> advertisements = advertisementRepository.filterAdvertisements(advertisementFilterDTO.getCategory(),
-                advertisementFilterDTO.getTitleContains(), advertisementFilterDTO.getUserId(), advertisementFilterDTO.getSortBy());
+                advertisementFilterDTO.getTitleContains(), advertisementFilterDTO.getUserId(), advertisementFilterDTO.getMaxValue());
         Collection<AdvertisementCardDTO> advertisementCardDTOS = new ArrayList<>();
         for(Advertisement ad: advertisements){
             AdvertisementCardDTO advertisementCardDTO = new AdvertisementCardDTO(ad);
             // here to set image
+            if (ad.getImage() != null){    advertisementCardDTO.setImage(imageService.getImage(ad.getImage()));}
             advertisementCardDTOS.add(advertisementCardDTO);
         }
         return advertisementCardDTOS;

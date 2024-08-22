@@ -2,42 +2,42 @@
 .login-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    align-items: flex-start; /* Aligns the container to the top */
+    height: calc(100vh - 100px); /* Adjusts height to account for the 100px offset */
+    margin-top: 100px; /* Adds a 100px margin from the top */
+    padding: 0;
 }
 
 .login-form {
-    background-color: #ffffff; /* White background for the form */
+    background-color: #ffffff;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for better appearance */
-    max-width: 400px; /* Maximum width of the form */
-    width: 100%; /* Full width within max-width constraint */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
     margin: auto; /* Center horizontally */
 }
 
 .login-form h2 {
-    color: #235471; /* Title color matching the navbar background */
-    text-align: center; /* Center the title */
+    color: #235471;
+    text-align: center;
 }
 
 .login-form .form-group {
-    margin-bottom: 1rem; /* Add space between form groups */
+    margin-bottom: 1rem;
 }
 
 .login-form .form-control {
-    border-color: #235471; /* Border color matching the navbar background */
+    border-color: #235471;
 }
 
 .login-form .btn-primary {
-    background-color: #235471; /* Button background color matching the navbar background */
-    border-color: #235471; /* Button border color */
-    width: 100%; /* Make the button full width */
+    background-color: #235471;
+    border-color: #235471;
+    width: 100%;
 }
 
 .login-form .btn-primary:hover {
-    background-color: #1d4f74; /* Darker shade for hover effect */
-    border-color: #1d4f74; /* Darker shade for hover effect */
+    background-color: #1d4f74;
+    border-color: #1d4f74;
 }
