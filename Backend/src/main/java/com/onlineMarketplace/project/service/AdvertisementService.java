@@ -44,7 +44,6 @@ public class AdvertisementService implements IAdvertisementService {
         Collection<AdvertisementCardDTO> advertisementCardDTOS = new ArrayList<>();
         for(Advertisement ad: advertisements){
             AdvertisementCardDTO advertisementCardDTO = new AdvertisementCardDTO(ad);
-            // here to set image
             advertisementCardDTOS.add(advertisementCardDTO);
         }
         return advertisementCardDTOS;
@@ -143,7 +142,6 @@ public class AdvertisementService implements IAdvertisementService {
         Collection<AdvertisementCardDTO> advertisementCardDTOS = new ArrayList<>();
         for(Advertisement ad: advertisements){
             AdvertisementCardDTO advertisementCardDTO = new AdvertisementCardDTO(ad);
-            // here to set image
             if (ad.getImage() != null){    advertisementCardDTO.setImage(imageService.getImage(ad.getImage()));}
             advertisementCardDTOS.add(advertisementCardDTO);
         }

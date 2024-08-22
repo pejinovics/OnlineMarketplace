@@ -86,15 +86,12 @@ const EditAdvertisement: React.FC = () => {
         }
         setError(null);
 
-        // Convert image to base64 if it exists
         const imageBase64 = image ? await convertToBase64(image) : null;
 
-        // Log the first 20 characters of the image data
         if (imageBase64) {
             console.log('Image Base64 (first 20 chars):', imageBase64.substring(0, 20));
         }
 
-        // Create advertisement data
         const advertisementData = {
             id,
             title,
@@ -108,7 +105,6 @@ const EditAdvertisement: React.FC = () => {
         };
 
         try {
-            // Update the advertisement
             await axiosInstance.put(`/api/advertisements/${id}`, advertisementData, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -126,7 +122,7 @@ const EditAdvertisement: React.FC = () => {
 
                 console.log('Image uploaded successfully');
             }
-            // Redirect to /home on success
+
             navigate('/');
         } catch (error) {
             console.error('Error updating advertisement:', error);
@@ -150,7 +146,6 @@ const EditAdvertisement: React.FC = () => {
         }
     };
 
-    // Convert File to Base64 string
     const convertToBase64 = (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();

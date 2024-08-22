@@ -1,10 +1,10 @@
-/* Register.css */
+
 .register-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Aligns the container to the top */
-    height: calc(100vh - 100px); /* Adjusts height to account for the 100px offset */
-    margin-top: 100px; /* Adds a 100px margin from the top */
+    align-items: flex-start;
+    height: calc(100vh - 100px);
+    margin-top: 100px;
     padding: 0;
     background-color: #f8f9fa;
 }

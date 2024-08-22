@@ -26,7 +26,6 @@ const Register: React.FC = () => {
             if (response.status === 201) {
                 navigate('/login');
 
-                // Optionally redirect to login or another page
             }
         } catch (error) {
             console.error('There was an error with the registration!', error);

@@ -46,11 +46,9 @@ public class AuthenticationController {
                     userCredentialsDTO.getUsername(), userCredentialsDTO.getPassword());
             Authentication auth = authenticationManager.authenticate(authReq);
 
-            // Postavljanje SecurityContext
             SecurityContext sc = SecurityContextHolder.getContext();
             sc.setAuthentication(auth);
 
-            // Logovanje za proveru
             System.out.println("SecurityContext Authentication: " + sc.getAuthentication());
 
             String token = jwtTokenUtil.generateToken(userCredentialsDTO.getUsername(), userDetailsService.loadUserByUsername(userCredentialsDTO.getUsername()));
@@ -63,11 +61,6 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-
-
-
-
-
 
     @GetMapping(value = "/logout", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity logoutUser() {

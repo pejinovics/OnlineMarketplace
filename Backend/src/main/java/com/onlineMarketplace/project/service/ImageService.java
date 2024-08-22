@@ -39,7 +39,7 @@ public class ImageService {
         if (Files.exists(imagePath)) {
             return Files.readAllBytes(imagePath);
         } else {
-            return null; // Rukovanje kada slika ne postoji
+            return null;
         }
     }
 
